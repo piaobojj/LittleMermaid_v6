@@ -32,15 +32,16 @@ public class MainActivity extends AppCompatActivity {
         /*Assign associate navigation ID to the button variable*/
         nextWordButton = (Button) findViewById(R.id.nextButton);
 
-        aRef = new Firebase("https://littlemermaid.firebaseio.com/");//.child("5502");
+        aRef = new Firebase("https://littlemermaid.firebaseio.com/dictionary");//.child("5502");
 
         aRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 Map<String, String> map = dataSnapshot.getValue(Map.class);
-                String dataValue = map.get("lemma");
-                //buttonString.add(dataValue);
+                String dataValue = map.get("NGram");
+                System.out.println(dataValue);
+                //buttonString.add(dataValue)-;
                 Log.v("The Value", "-------------Data I got:  " + dataValue);
                 //Log.v("The Value", "-------------How many  " + buttonString.size());
             }

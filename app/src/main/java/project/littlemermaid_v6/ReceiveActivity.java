@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -21,7 +22,9 @@ import static android.R.id.list;
 public class ReceiveActivity extends Activity implements View.OnClickListener {
 
     private Button nextBtn;
-    //private ArrayList<Integer> myList = new ArrayList<>();
+    private TextView test;
+    ArrayList<Integer> myList = new ArrayList<>();
+    ArrayList<CategoryData> list;
 
     //testing remove later
     public String[] ar = {"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -33,7 +36,12 @@ public class ReceiveActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
+        test = (TextView) findViewById(R.id.test);
+
         Intent intent = getIntent();
+        list = (ArrayList<CategoryData>) intent.getSerializableExtra("Magazine");
+
+        test.setText(list.get(0).MAGAa);
 
         nextBtn = (Button) findViewById(R.id.nextBtn);
         nextBtn.setOnClickListener(this);

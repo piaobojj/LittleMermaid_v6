@@ -19,14 +19,26 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="64dp" />
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <Button
+        android:text="Magazine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nextButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/nextButton"
-        android:layout_toStartOf="@+id/nextButton"
-        android:layout_alignParentTop="true"
-        android:id="@+id/buttonLayout"></TableLayout>
+        android:layout_marginLeft="47dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/magBtn" />
+
+    <Button
+        android:text="Newspaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/magBtn"
+        android:layout_alignLeft="@+id/magBtn"
+        android:layout_alignStart="@+id/magBtn"
+        android:layout_marginTop="19dp"
+        android:id="@+id/newsBtn" />
 
 </RelativeLayout>

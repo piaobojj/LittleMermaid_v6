@@ -16,58 +16,103 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
+import static android.R.attr.x;
 import static android.R.id.list;
 
 public class ReceiveActivity extends Activity implements View.OnClickListener {
 
-    private Button nextBtn;
+    private Button nextBtn, returnBtn;
     private TextView test;
-    ArrayList<Integer> myList = new ArrayList<>();
-    ArrayList<CategoryData> list;
 
-    //testing remove later
-    public String[] ar = {"1","2","3","4","5","6","7","8","9","10","11","12"};
-    public int [] ir = {5,4,3,2,1,6,7,8,9,10,11,12};
+    private boolean nextTrigger;
 
+    ArrayList<Integer> cateSelected = new ArrayList<Integer>();
+    ArrayList<String> word = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
 
+        nextTrigger = false;
+
+        word.add("unpronounceable"); word.add("trash-talking"); word.add("gymnasium"); word.add("faithfull");
+
         test = (TextView) findViewById(R.id.test);
 
         Intent intent = getIntent();
-        list = (ArrayList<CategoryData>) intent.getSerializableExtra("Magazine");
-
-        test.setText(list.get(0).MAGAa);
+        cateSelected = intent.getIntegerArrayListExtra("CateKey");
+        //System.out.println("-From other activity--" + cateSelected);
 
         nextBtn = (Button) findViewById(R.id.nextBtn);
+        returnBtn = (Button) findViewById(R.id.returnBtn);
         nextBtn.setOnClickListener(this);
-
-        /*
-                try{
-                    //myList.addAll(intent.getExtras().getIntegerArrayList("Magazine"));
-                    //System.out.println("----------------------------------" + myList.get(0));
-                    //ArrayList<CategoryData> list = (ArrayList<CategoryData>) intent.getSerializableExtra("Magazine");
-                    //System.out.print("----------------------------------" + list.size());
-
-                    displayBtn();
+        returnBtn.setOnClickListener(this);
 
 
-                }catch (NullPointerException e){
+        // TODO Need more task
+        for(int i = 0 ; i < cateSelected.size(); i++) {
+            // System.out.println("-From other activity--" + cateSelected.get(i));
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(cateSelected.get(i));
+        }
 
-                }*/
+        int wordSize = 8; //word.size(); //4
+        //btn display
 
-        displayBtn();
+        if( wordSize > 4){
+
+            System.out.println("Going in");
+            int tempTrack = 0;
+
+            //dynamicBtnDisplay(0,word.size());
+
+            if(nextTrigger = true && wordSize > 4){
+                System.out.println("Going to this next");
+                TableLayout table = (TableLayout) findViewById( R.id.btnLayout);
+                table.removeAllViews();
+
+                for(int index = tempTrack; index < wordSize; index++){
+                    //TableLayout table = (TableLayout) findViewById( R.id.btnLayout);
+                    int buttonsInRow = 0;
+                    int numRows = table.getChildCount();
+                    TableRow row = null;
+                    if( numRows > 0 ){
+                        row = (TableRow) table.getChildAt( numRows - 1 );
+                        buttonsInRow = row.getChildCount();
+                    }
+
+                    if( numRows == 0 || buttonsInRow == 2 ){
+                        row = new TableRow( this );
+                        table.addView( row );
+                        buttonsInRow = 0;
+                    }
+                    if( buttonsInRow < 2 ){
+                        ToggleButton bb = new ToggleButton( this );
+                        row.addView( bb, 500, 200 );
+                        //bb.setText(word.get(index));
+                    }
+                }
+
+            }
+
+
+
+        }else{
+            //display if no more than 4 word in category
+            dynamicBtnDisplay(0,word.size());
+        }
+
 
     }
 
-    public void displayBtn() {
+    private void dynamicBtnDisplay(int i, int size) {
+        for(int index = i; index < size; index++){
+            TableLayout table = (TableLayout) findViewById( R.id.btnLayout);
 
-        for (int index = 0;  index < 10 ;index++){
-            TableLayout table = (TableLayout) findViewById( R.id.btnLayout );
             int buttonsInRow = 0;
             int numRows = table.getChildCount();
             TableRow row = null;
@@ -76,19 +121,17 @@ public class ReceiveActivity extends Activity implements View.OnClickListener {
                 buttonsInRow = row.getChildCount();
             }
 
-            if( numRows == 0 || buttonsInRow == 4){
+            if( numRows == 0 || buttonsInRow == 2 ){
                 row = new TableRow( this );
                 table.addView( row );
                 buttonsInRow = 0;
             }
-            if( buttonsInRow < 4 ){
+            if( buttonsInRow < 2 ){
                 Button bb = new Button( this );
-                row.addView( bb, 300, 200 );
-                bb.setText(ar[index]);
-                //bb.setText(myList.get(index));
-                //bb.setText(ar[index]);
+                row.addView( bb, 500, 200 );
+                //bb.setText("0");
+                bb.setText(word.get(index));
             }
-
         }
     }
 
@@ -99,6 +142,15 @@ public class ReceiveActivity extends Activity implements View.OnClickListener {
         switch (view.getId()){
             //close return the launch the activity
             case R.id.nextBtn:
+                if(word.size() > 4) {
+                    nextTrigger = true;
+                    System.out.println("-From other activity-nexttrigger-" + nextTrigger);
+                }else{
+                    Toast.makeText(getApplicationContext(), "No more word", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.returnBtn:
+                finish();
                 break;
             default:
                 break;

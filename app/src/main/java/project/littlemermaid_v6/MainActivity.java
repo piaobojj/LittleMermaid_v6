@@ -3,62 +3,85 @@ package project.littlemermaid_v6;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.core.view.View;
+import com.firebase.client.GenericTypeIndicator;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
-import static android.R.attr.onClick;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
-import static android.os.Build.VERSION_CODES.M;
+import static android.R.attr.id;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Firebase aRef;
     private Button launchBtn;
-    private Button magBtn, newsBtn;
+    private Button educationBtn, historyBtn, miscBtn;
     private String toastMessage = "";
 
-    ArrayList<CategoryData> arrayMag = new ArrayList<CategoryData>();
+    /* Data Retrieve from DataBase*/
+    ArrayList<CategoryData> arrayCate = new ArrayList<>();
+
+    /* Data Retrieve from DataBase*/
+    ArrayList<Integer> arrayEdu= new ArrayList<>();
+    /* Data Retrieve from DataBase*/
+    ArrayList<Integer> arrayHis= new ArrayList<>();
+    /* Data Retrieve from DataBase*/
+    ArrayList<Integer> arrayMisc= new ArrayList<>();
+
+    /*Selection string array */
+    ArrayList<ArrayList<Integer>> cateSelected = new ArrayList<ArrayList<Integer>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        launchBtn = (Button) findViewById(R.id.nextButton);
+        arrayCate = new ArrayList<CategoryData>();
 
-        magBtn = (Button) findViewById(R.id.magBtn);
-        newsBtn = (Button) findViewById(R.id.newsBtn);
+        arrayEdu.add(0); arrayEdu.add(1); arrayEdu.add(2); arrayEdu.add(3);
+        arrayHis.add(0); arrayHis.add(0); arrayHis.add(1); arrayHis.add(2);
+        arrayMisc.add(1); arrayMisc.add(2); arrayMisc.add(3); arrayMisc.add(0);
+
+
+        launchBtn = (Button) findViewById(R.id.launchButton);
+        miscBtn = (Button) findViewById(R.id.miscBtn);
+        educationBtn = (Button) findViewById(R.id.educationBtn);
+        historyBtn = (Button) findViewById(R.id.historyBtn);
+
 
         aRef = new Firebase("https://littlemermaid.firebaseio.com/dictionary/");
+
 
         aRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                Map<String, Integer> map = dataSnapshot.getValue(Map.class);
+                GenericTypeIndicator<Map<String, Object>> m = new GenericTypeIndicator<Map<String, Object>>(){};
+                Map<String, Object> map = dataSnapshot.getValue(m);
 
-                int MAGAa= map.get("MAG:Afric-Amer");
-                int MAGChild = map.get("MAG:Children");
-                int MAGEntertain = map.get("MAG:Entertain");
-                int MAGFinancial = map.get("MAG:Financial");
+                String lemma = (String) map.get("lemma");
+                String NGram = (String) map.get("NGram");
 
-                arrayMag.add(new CategoryData(MAGAa,MAGChild,MAGEntertain,MAGFinancial));
+                int Education = (int) map.get("ACAD:Education");
+                int History = (int) map.get("ACAD:History");
+                int Misc = (int) map.get("ACAD:Misc");
 
-                //System.out.println(arrayMag.size());
+                //arrayCate.add(new CategoryData(lemma,NGram,Education,History,Misc));
+
+                //Map<String, Object> map = (Map<String, Object>) dataSnapshot.getValue();
+                //int MAGChild = map.get("MAG:Children");
+               // int MAGEntertain = map.get("MAG:Entertain");
+                //int MAGFinancial = map.get("MAG:Financial");
+                //arrayMag.add(new CategoryData(MAGAa,MAGChild,MAGEntertain,MAGFinancial));
+                //System.out.println(arrayCate.toString());
             }
 
             @Override
@@ -80,34 +103,74 @@ public class MainActivity extends AppCompatActivity{
             public void onCancelled(FirebaseError firebaseError) {
 
             }
+
         });
 
+        /*
+        for(int i = 0 ; i < arrayEdu.size(); i++) {
+            System.out.println("------" + arrayEdu.get(i));
+        }*/
+
+        educationBtn.setOnClickListener(this);
+        historyBtn.setOnClickListener(this);
+        miscBtn.setOnClickListener(this);
+
+        launchBtn.setOnClickListener(this);
+
+        /*
         magBtn.setOnClickListener(new android.view.View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
                 Intent i = new Intent(MainActivity.this, ReceiveActivity.class);
-                i.putExtra("Magazine",arrayMag);
+                i.putExtra("Magazine",arrayCate);
                 startActivity(i);
             }
-        });
+        });*/
 
 
+    }
 
-        launchBtn.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
+    @Override
+    public void onClick(View view) {
 
-                if(toastMessage == ""){
-                    Toast.makeText(getApplicationContext(), "No Category", Toast.LENGTH_SHORT).show();
-                }else{
+        switch (view.getId()){
+
+            case R.id.educationBtn:
+                cateSelected.add(arrayEdu);
+                break;
+            case R.id.historyBtn:
+                cateSelected.add(arrayHis);
+                break;
+            case R.id.miscBtn:
+                cateSelected.add(arrayMisc);
+                break;
+            case R.id.launchButton:
+
+                if(cateSelected.size() == 0){
+
+                    Toast.makeText(getApplicationContext(), "Please selected category", Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    //send the value to the receive
+                    Intent intent = new Intent(MainActivity.this, ReceiveActivity.class);
+                    intent.putExtra("CateKey",cateSelected);
+                    //intent.putIntegerArrayListExtra("CateKey", cateSelected);
+                    startActivity(intent);
+
+                    //testing the index value
+                    for(int i = 0 ; i < cateSelected.size(); i++) {
+                        System.out.println("-Main activity--" + cateSelected.get(i));
+                    }
+                    //reset the string
+                    cateSelected.clear();
 
                 }
 
-
-            }
-        });
-
-
+                break;
+            default:
+                break;
+        }
     }
 
 

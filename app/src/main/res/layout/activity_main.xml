@@ -12,33 +12,43 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Next"
-        android:id="@+id/nextButton"
+        android:text="launch"
+        android:id="@+id/launchButton"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="64dp" />
 
     <Button
-        android:text="Magazine"
+        android:text="Education"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nextButton"
+        android:layout_alignTop="@+id/launchButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="47dp"
         android:layout_marginStart="47dp"
         android:layout_marginTop="12dp"
-        android:id="@+id/magBtn" />
+        android:id="@+id/educationBtn" />
 
     <Button
-        android:text="Newspaper"
+        android:text="History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/magBtn"
-        android:layout_alignLeft="@+id/magBtn"
-        android:layout_alignStart="@+id/magBtn"
+        android:layout_below="@+id/educationBtn"
+        android:layout_alignLeft="@+id/educationBtn"
+        android:layout_alignStart="@+id/educationBtn"
         android:layout_marginTop="19dp"
-        android:id="@+id/newsBtn" />
+        android:id="@+id/historyBtn" />
+
+    <Button
+        android:text="Misc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/historyBtn"
+        android:layout_alignLeft="@+id/historyBtn"
+        android:layout_alignStart="@+id/historyBtn"
+        android:layout_marginTop="25dp"
+        android:id="@+id/miscBtn" />
 
 </RelativeLayout>

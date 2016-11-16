@@ -48,11 +48,21 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/nextBtn"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginEnd="13dp"
         android:layout_marginTop="115dp"
-        android:id="@+id/test" />
+        android:id="@+id/test"
+        android:layout_below="@+id/nextBtn"
+        android:layout_toRightOf="@+id/btnLayout"
+        android:layout_toEndOf="@+id/btnLayout"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp" />
+
+    <Button
+        android:text="Return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nextBtn"
+        android:layout_marginTop="20dp"
+        android:id="@+id/returnBtn"
+        android:layout_toRightOf="@+id/btnLayout"
+        android:layout_toEndOf="@+id/btnLayout" />
 </RelativeLayout>

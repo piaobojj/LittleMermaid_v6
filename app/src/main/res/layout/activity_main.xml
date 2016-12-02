@@ -7,48 +7,189 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#d4ca96"
     tools:context="project.littlemermaid_v6.MainActivity">
+
+    <Button
+        android:text="SocArts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button8"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_alignBaseline="@+id/button9"
+        android:layout_alignBottom="@+id/button9"
+        android:layout_toRightOf="@+id/button9"
+        android:layout_toEndOf="@+id/button9" />
+
+    <Button
+        android:text="Religion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/button9"
+        android:layout_alignStart="@+id/button9" />
+
+    <Button
+        android:text="Sports"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignLeft="@+id/button8"
+        android:layout_alignStart="@+id/button8" />
+
+    <Button
+        android:text="Life"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:id="@+id/button9"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_below="@+id/button3"
+        android:layout_alignLeft="@+id/historyBtn"
+        android:layout_alignStart="@+id/historyBtn" />
+
+    <Button
+        android:text="Humanities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button11"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/button3"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_alignLeft="@+id/educationBtn"
+        android:layout_alignStart="@+id/educationBtn" />
+
+    <Button
+        android:text="NEWSPAPER"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button7"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/button9"
+        android:layout_alignBottom="@+id/button9"
+        android:layout_alignLeft="@+id/button11"
+        android:layout_alignStart="@+id/button11" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:id="@+id/button14"
+        android:minWidth="88dp"
+        android:minHeight="47dp"
+        android:textSize="14sp"
+        android:background="@drawable/customfuntion"
+        android:layout_alignBaseline="@+id/button4"
+        android:layout_alignBottom="@+id/button4"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Return"
+        android:id="@+id/button13"
+        android:minWidth="88dp"
+        android:minHeight="47dp"
+        android:textSize="14sp"
+        android:background="@drawable/customfuntion"
+        android:layout_alignBaseline="@+id/button8"
+        android:layout_alignBottom="@+id/button8"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="launch"
         android:id="@+id/launchButton"
-        android:layout_alignParentTop="true"
+        android:minWidth="88dp"
+        android:minHeight="47dp"
+        android:textSize="14sp"
+        android:background="@drawable/customfuntion"
+        android:layout_marginBottom="27dp"
+        android:layout_above="@+id/button3"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="64dp" />
-
-    <Button
-        android:text="Education"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/launchButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="12dp"
-        android:id="@+id/educationBtn" />
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:text="History"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/educationBtn"
-        android:layout_alignLeft="@+id/educationBtn"
-        android:layout_alignStart="@+id/educationBtn"
-        android:layout_marginTop="19dp"
-        android:id="@+id/historyBtn" />
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:id="@+id/historyBtn"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/miscBtn"
+        android:layout_alignBottom="@+id/miscBtn"
+        android:layout_toRightOf="@+id/educationBtn"
+        android:layout_toEndOf="@+id/educationBtn" />
 
     <Button
         android:text="Misc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/historyBtn"
-        android:layout_alignLeft="@+id/historyBtn"
-        android:layout_alignStart="@+id/historyBtn"
-        android:layout_marginTop="25dp"
-        android:id="@+id/miscBtn" />
+        android:id="@+id/miscBtn"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/launchButton"
+        android:layout_alignBottom="@+id/launchButton"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_alignStart="@+id/button4" />
+
+    <Button
+        android:text="Education"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:id="@+id/educationBtn"
+        android:minWidth="100dp"
+        android:minHeight="65dp"
+        android:textSize="14sp"
+        android:background="@drawable/custombutton"
+        android:textColor="#ffffff"
+        android:layout_alignBaseline="@+id/historyBtn"
+        android:layout_alignBottom="@+id/historyBtn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
